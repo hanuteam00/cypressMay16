@@ -1,11 +1,34 @@
+/*Tệp tsconfig.json rất quan trọng trong một dự án TypeScript
+vì nó cung cấp các thiết lập và cấu hình cho trình biên dịch TypeScript (tsc)
+Mục tiêu JavaScript: Bạn có thể chỉ định phiên bản JavaScript mục tiêu (ví dụ: ES5, ES6) để mã TypeScript của bạn biên dịch ra phiên bản JavaScript cụ thể.
+Thư viện: Bạn có thể chỉ định các thư viện API mà TypeScript sẽ có sẵn trong quá trình biên dịch (ví dụ: DOM, ES5, ES6).
+Module Resolution: Bạn có thể thiết lập cách TypeScript tìm kiếm và tải các module (ví dụ: Node, Nodenext).
+ES Module Interoperability: Bạn có thể cấu hình để TypeScript hỗ trợ tương thích giữa các module CommonJS và ES6.
+*/
 {
   "compilerOptions": {
-    //support commands.ts
-    "module": "NodeNext",
-    "moduleResolution":"NodeNext",
+    /*Part 2: new configurations for
+    - support declare global in commands.ts
+    - adding for support cypress cucumber
+    */
+    //cho phép TypeScript hỗ trợ tốt hơn các module ESM trong môi trường Node.js mới nhất
+    //giúp bạn sử dụng cả module ES6 và CommonJS trong cùng một dự án.
+    "module":"nodenext",
+    //Thiết lập cách TypeScript tìm kiếm và tải các module theo cách mà Node.js hiện đại làm,
+    //đảm bảo rằng các module được tìm thấy đúng cách dù chúng sử dụng chuẩn nào
+    "moduleResolution": "nodenext",
+    //Giúp TypeScript tương thích tốt hơn với các module CommonJS khi sử dụng cú pháp import của ES6.
+    //Điều này đảm bảo bạn có thể import các module CommonJS mà không gặp lỗi.
+    "esModuleInterop": true,
+    
+    //Part 1: old configurations 
+    //Đảm bảo rằng mã TypeScript được biên dịch sẽ tương thích với ECMAScript 5, hỗ trợ rộng rãi trên hầu hết các trình duyệt
     "target": "es5",
+    //Cung cấp các thư viện ECMAScript 5 và DOM API cho TypeScript, giúp bạn sử dụng các tính năng JavaScript và các phương thức DOM mà không gặp lỗi kiểu
     "lib": ["es5", "dom"],
+    //Bao gồm các định nghĩa kiểu cho Cypress và Node.js, cho phép bạn viết mã kiểm thử và sử dụng các module Node.js một cách dễ dàng và chính xác
     "types": ["cypress", "node"]
   },
+  //Đảm bảo rằng tất cả các tệp TypeScript trong dự án của bạn đều được biên dịch.
   "include": ["**/*.ts"]
 }

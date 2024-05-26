@@ -16,7 +16,7 @@ describe("Signup Test", () => {
     });
   });
 
-  it.skip("TC1: sign up one account", function () {
+  it.skip("TC1: sign up one account", () => {
     cy.visit("/signup?role=educator");
     cy.get(":nth-child(1) > .FormInput").type("engineer");
     cy.get(".u-gapSmall > :nth-child(2) > .FormInput").type("record22");
